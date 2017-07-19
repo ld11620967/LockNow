@@ -7,9 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-/**
- * Created by nilin on 2017/4/10.
- */
 
 public class SimpleLockScreen extends Activity{
 
@@ -23,8 +20,7 @@ public class SimpleLockScreen extends Activity{
         //AdminReceiver 继承自 DeviceAdminReceiver
         componentName = new ComponentName(this, AdminReceiver.class);
         mylock();
-        //  killMyself ，锁屏之后就立即kill掉我们的Activity，避免资源的浪费;
-        android.os.Process.killProcess(android.os.Process.myPid());
+        finish();
     }
 
 
@@ -45,7 +41,7 @@ public class SimpleLockScreen extends Activity{
         //权限列表
         intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, componentName);
         //描述(additional explanation)
-        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "------ 需获取以下权限才可进行一键锁屏 ------");
+//        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "------ 需以下权限 ------");
         startActivityForResult(intent, 0);
     }
 
