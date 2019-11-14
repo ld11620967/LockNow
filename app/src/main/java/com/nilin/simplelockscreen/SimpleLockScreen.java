@@ -10,13 +10,11 @@ import android.os.Bundle;
 
 public class SimpleLockScreen extends Activity{
 
-    private DevicePolicyManager policyManager;
-    private ComponentName componentName;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        policyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
-        componentName = new ComponentName(this, AdminReceiver.class);
+        DevicePolicyManager policyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+        ComponentName componentName = new ComponentName(this, AdminReceiver.class);
+        assert policyManager != null;
         boolean active = policyManager.isAdminActive(componentName);
         if(!active){
             Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
